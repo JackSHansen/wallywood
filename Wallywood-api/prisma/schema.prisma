@@ -1,0 +1,105 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  firstname String   @db.VarChar(255)
+  lastname  String   @db.VarChar(255)
+  email     String   @unique @db.VarChar(255)
+  password  String   @db.VarChar(255)
+  role      Role     @default(USER)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  
+  cartLines    CartLine[]
+  userRatings  UserRating[]
+  
+  @@map("users")
+}
+
+model Poster {
+  id          Int      @id
+  name        String   @db.VarChar(255)
+  slug        String   @unique @db.VarChar(255)
+  description String?  @db.Text
+  image       String?  @db.VarChar(255)
+  width       Int?
+  height      Int?
+  price       Decimal? @db.Decimal(10, 2)
+  stock       Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  cartLines       CartLine[]
+  userRatings     UserRating[]
+  genrePosterRels GenrePosterRel[]
+  
+  @@map("posters")
+}
+
+model Genre {
+  id        Int      @id
+  title     String   @db.VarChar(255)
+  slug      String   @unique @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  genrePosterRels GenrePosterRel[]
+  
+  @@map("genres")
+}
+
+model GenrePosterRel {
+  genreId  Int
+  posterId Int
+  
+  genre  Genre  @relation(fields: [genreId], references: [id], onDelete: Cascade)
+  poster Poster @relation(fields: [posterId], references: [id], onDelete: Cascade)
+  
+  @@id([genreId, posterId])
+  @@map("genrePosterRel")
+}
+
+model CartLine {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  posterId  Int
+  quantity  Int
+  createdAt DateTime @default(now())
+  
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  poster Poster @relation(fields: [posterId], references: [id], onDelete: Cascade)
+  
+  @@map("cartlines")
+}
+
+model UserRating {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  posterId  Int
+  numStars  Int
+  createdAt DateTime @default(now())
+  
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  poster Poster @relation(fields: [posterId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, posterId])
+  @@map("userRatings")
+}
