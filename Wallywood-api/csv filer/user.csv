@@ -1,3 +1,13 @@
-"id","firstname","lastname","email","password","role","isActive"
-1,"Admin","Admin","info@webudvikler.dk","password","ADMIN",1
-2,"Testbruger","","alm@webudvikler.dk","password","USER",1
+id,firstname,lastname,email,password,role,isActive
+1,Admin,Admin,info@webudvikler.dk,password,ADMIN,1
+2,Testbruger,,alm@webudvikler.dk,password,USER,1
+3,Peter,Mortensen,peter.mortensen@example.com,nYI4oLkTRK,USER,1
+4,Anders,Poulsen,anders.poulsen@example.com,KGREdCDt8t,USER,1
+5,Peter,Mikkelsen,peter.mikkelsen@example.com,379XlQA3EH,USER,1
+6,Julie,Hansen,julie.hansen@example.com,cwOpiON62A,USER,1
+7,Anders,Lund,anders.lund@example.com,oPckUqP08a,USER,1
+8,Sara,Poulsen,sara.poulsen@example.com,g3Ykd5nOw9,USER,1
+9,Sara,Mortensen,sara.mortensen@example.com,3ivg3jQAxk,USER,1
+10,Peter,Thomsen,peter.thomsen@example.com,DdDvDgCRRL,USER,1
+11,Mette,Mikkelsen,mette.mikkelsen@example.com,A6r7cqFGTE,USER,1
+12,Julie,Nielsen,julie.nielsen@example.com,8I7OX5cs7o,USER,1
