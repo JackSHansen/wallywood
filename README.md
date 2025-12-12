@@ -36,6 +36,7 @@ CSV files are in:
 - `Filer til opgaven/genrePosterRel.csv`
 - `csv filer/CartLine.csv`
 - `csv filer/UserRating.csv`
+- `csv filer/user.csv`
 
 Seed database:
 ```
@@ -62,17 +63,22 @@ Body: { "email": "admin@wallywood.dk", "password": "password123" }
 Use `Authorization: Bearer <token>` for protected routes.
 
 ## Endpoints (examples)
-- Posters: `GET /api/posters`, `GET /api/posters/:id`, `POST/PUT/DELETE` (ADMIN)
-- Genres: `GET /api/genres`, `GET /api/genres/:id`, `POST/PUT/DELETE` (ADMIN)
-- Users: `GET /api/users` (ADMIN), `GET /api/users/:id`, `PUT /api/users/:id`, `DELETE /api/users/:id` (ADMIN)
-- Cart: `GET /api/cart`, `POST /api/cart`, `PUT /api/cart/:id`, `DELETE /api/cart/:id`
-- Ratings: `GET /api/ratings`, `GET /api/ratings/poster/:posterId`, `POST/PUT/DELETE /api/ratings` (auth)
+- **Auth**: `POST /api/auth/login`, `POST /api/auth/register`
+- **Posters**: `GET /api/posters`, `GET /api/posters/:id`, `POST/PUT/DELETE` (ADMIN)
+- **Genres**: `GET /api/genres`, `GET /api/genres/:id`, `POST/PUT/DELETE` (ADMIN)
+- **Users**: `GET /api/users` (ADMIN), `GET /api/users/:id`, `PUT /api/users/:id`, `DELETE /api/users/:id` (ADMIN)
+- **Cart**: `GET /api/cart`, `POST /api/cart`, `PUT /api/cart/:id`, `DELETE /api/cart/:id`
+- **Ratings**: `GET /api/ratings`, `GET /api/ratings/poster/:posterId`, `POST/PUT/DELETE /api/ratings` (auth)
 
-## Postman
-- Import requests, add `Bearer` token from `/api/auth/login`.
-- Test get:
-  - `GET http://localhost:3000/api/posters`
-  - `GET http://localhost:3000/api/genres`
+## Postman Collection
+Import denne collection for at teste API'et:
+[Wallywood API Postman Collection](https://jackshansen-5646948.postman.co/workspace/WallyWood~903fa4c3-a7af-4c08-a39d-6d9597dd0eaf/collection/49431152-81ef0f3b-c294-4271-b3e1-1d0ad3fbed16?action=share&creator=49431152)
+
+### Postman setup:
+- Import collection from link above
+- Create environment: `baseUrl = http://localhost:3000`, `token = (empty)`, `userId = (empty)`
+- Login request has Tests script that auto-sets `{{token}}` and `{{userId}}`
+- Collection uses Bearer Token auth with `{{token}}`
 
 ## GitHub
 Initialize and push:
@@ -83,3 +89,4 @@ git commit -m "Initial Wallywood API"
 git branch -M main
 git remote add origin https://github.com/<your-username>/wallywood-api.git
 git push -u origin main
+
