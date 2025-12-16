@@ -14,6 +14,7 @@ export const getAllPosters = async (req: Request, res: Response) => {
         }
       }
     });
+    console.log(posters);
     res.json(posters);
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
