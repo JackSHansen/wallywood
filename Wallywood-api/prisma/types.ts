@@ -34,8 +34,23 @@ export const fieldTypes: Record<string, Record<string, 'string' | 'number' | 'bo
         posterId: 'number',
         genreId: 'number'
     },
+    
+    userRating: {
+        id: 'number',
+        userId: 'number',
+        posterId: 'number',
+        numStars: 'number',
+        createdAt: 'date',
+        updatedAt: 'date'
+    },
      CartLine: {
+        id: 'number',
+        userId: 'number',
         posterId: 'number',
         genreId: 'number'
+        posterId: 'number',
+        quantity: 'number',
+        createdAt: 'date',
+        updatedAt: 'date'
     },
 }
