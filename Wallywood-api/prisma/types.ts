@@ -47,8 +47,7 @@ export const fieldTypes: Record<string, Record<string, 'string' | 'number' | 'bo
         id: 'number',
         userId: 'number',
         posterId: 'number',
-        genreId: 'number'
-        posterId: 'number',
+        genreId: 'number',
         quantity: 'number',
         createdAt: 'date',
         updatedAt: 'date'
